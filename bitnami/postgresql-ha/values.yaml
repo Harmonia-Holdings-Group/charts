@@ -133,6 +133,10 @@ postgresql:
   ##
   replicaCount: 2
 
+  ## Number of synchronous replicas
+  ##
+  synchronousReplicas: "{{ sub .Values.postgresql.replicaCount 1 }}"
+
   ## Update strategy for PostgreSQL statefulset
   ## ref: https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/#update-strategies
   ##

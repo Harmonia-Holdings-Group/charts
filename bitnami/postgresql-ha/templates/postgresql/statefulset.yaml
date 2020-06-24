@@ -89,6 +89,8 @@ spec:
             - name: BITNAMI_DEBUG
               value: {{ ternary "true" "false" .Values.postgresqlImage.debug | quote }}
             # PostgreSQL configuration
+            - name: POSTGRESQL_NUM_SYNCHRONOUS_REPLICAS
+              value: {{ include "postgresql-ha.tplValue" (dict "value" .Values.postgresql.synchronousReplicas "context" $) | quote }}
             - name: POSTGRESQL_VOLUME_DIR
               value: {{ .Values.persistence.mountPath | quote }}
             - name: PGDATA
